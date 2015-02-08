@@ -1,0 +1,47 @@
+﻿<form method="post" id="addBook">
+    <div class="container_16">
+        <h1 class="title-01">
+            Web API sample
+        </h1>
+    </div>
+    <div class="container_16">
+        <div class="grid_16 body-container">
+            <div class="margin grid_6 alpha">
+                <label for="Name">
+                    Name
+                </label><br />
+                <input type="text" id="name" name="Name" class="text grid_4" />
+                <br class="clear" />
+                <label for="Price">
+                    Price
+                </label><br />
+                <input type="text" id="price" name="Price" class="text grid_4" />
+                <br class="clear" />
+                <input type="submit" value="Add" class="button small green" />
+                <br />
+                <br />
+                <br class="clear" />
+                <strong id="book">
+                    @*   <label id="book">
+                        </label>*@
+                </strong>
+                <br />
+                <br class="clear" />
+                <br />
+                <label for="bookId">
+                    Serach By ID
+                </label>
+                <br />
+                <input type="text" id="bookId" size="20" class="text grid_4" /><br class="clear" />
+                <input type="button" value="Search" onclick="find();" class="button small gray" />
+            </div>
+            <div class="grid_8 omega">
+                <img id="loader" src="images/ajax-loader.gif" />
+                <ul id="books" class="books"></ul>
+            </div>
+        </div>
+    </div>
+    <br class="clear" />
+    <div class="footer clearfix">
+    </div>
+</form>
