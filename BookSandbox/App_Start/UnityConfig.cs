@@ -18,7 +18,7 @@ namespace BookSandbox
             // e.g. container.RegisterType<ITestService, TestService>();
 
             // container.RegisterType<BooksController>();
-            container.RegisterType<IBookRepository, BookRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IBookRepository, BookRepository>(new ContainerControlledLifetimeManager());
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

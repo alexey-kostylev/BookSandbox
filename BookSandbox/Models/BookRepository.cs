@@ -1,6 +1,7 @@
 ﻿using BookSandbox.Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +14,7 @@ namespace BookSandbox.Models
         public BookRepository()
         {
             BookStoreInitializer.InitStore(db);
-            Console.WriteLine("repository created");
+            Debug.WriteLine("repository created");
         }
 
         public IEnumerable<Book> GetAll()
@@ -28,7 +29,13 @@ namespace BookSandbox.Models
 
         public Book Add(Book item)
         {
+            if (item.Id == 0)
+            {
+                item.Id = Book.GenerateNextId();
+            }
+
             db.Books.Add(item);
+            Debug.WriteLine("Book added: " + item.Name+". Total books: "+this.db.Books.Count);
             return item;
         }
 
