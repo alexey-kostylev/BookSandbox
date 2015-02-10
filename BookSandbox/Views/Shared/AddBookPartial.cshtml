@@ -1,6 +1,6 @@
 ﻿@model BookSandbox.Models.Book
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("", "api/Books", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
