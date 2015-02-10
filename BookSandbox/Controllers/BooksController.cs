@@ -46,7 +46,7 @@ namespace BookSandbox.Controllers
         public HttpResponseMessage PostBook(Book book)
         {
             var created = this.repo.Add(book);
-            var response = Request.CreateResponse<Book>(HttpStatusCode.Created, book);
+            var response = Request.CreateResponse<Book>(HttpStatusCode.Created, created);
 
             string uri = Url.Route(null, new { id = created.Id });
 
@@ -60,6 +60,12 @@ namespace BookSandbox.Controllers
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
             }
+        }
+
+        public HttpResponseMessage DeleteBook(int id)
+        {
+            this.repo.Remove(id);
+            return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
     }
 }

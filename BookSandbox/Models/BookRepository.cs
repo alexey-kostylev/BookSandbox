@@ -35,14 +35,18 @@ namespace BookSandbox.Models
             }
 
             db.Books.Add(item);
-            Debug.WriteLine("Book added: " + item.Name+". Total books: "+this.db.Books.Count);
+            Debug.WriteLine("book added: " + item + ". Total books: " + this.db.Books.Count);
             return item;
         }
 
         public void Remove(int id)
         {
-            var found = db.Books.Single(s=>s.Id == id);
-            db.Books.Remove(found);
+            var found = db.Books.FirstOrDefault(s=>s.Id == id);
+            if (found != null)
+            {
+                db.Books.Remove(found);
+                Debug.WriteLine("book deleted: " + found);
+            }
         }
 
         public bool Update(Book item)
@@ -51,6 +55,7 @@ namespace BookSandbox.Models
             found.Name = item.Name;
             found.Price = item.Price;
 
+            Debug.WriteLine("book updated:  " + found);
             return true;
         }
     }

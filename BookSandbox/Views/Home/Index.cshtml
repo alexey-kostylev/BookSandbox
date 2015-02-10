@@ -17,26 +17,31 @@
                 </label><br />
                 <input type="text" id="price" name="Price" class="text grid_4" />
                 <br class="clear" />
-                <input type="submit" value="Add" class="button small green" />
-                <br />
-                <br />
+                <input type="submit" value="Add" class="button small green" />               
+                
                 <br class="clear" />
+                <br />
+                <label for="bookId">
+                    Search By ID
+                </label>
+                <br />
+                <input type="text" id="bookId" size="20" placeholder="book id" class="text grid_4" /><br class="clear" />
+                <input type="button" value="Search" onclick="find();" class="button small gray" />
+                <br />
                 <strong id="book">
                     @*   <label id="book">
                         </label>*@
                 </strong>
-                <br />
-                <br class="clear" />
-                <br />
-                <label for="bookId">
-                    Serach By ID
-                </label>
-                <br />
-                <input type="text" id="bookId" size="20" class="text grid_4" /><br class="clear" />
-                <input type="button" value="Search" onclick="find();" class="button small gray" />
+                <br />                
             </div>
+            <br />
+            
             <div class="grid_8 omega">
-                <img id="loader" src="images/ajax-loader.gif" />
+                <input type="button" value="Refresh" id="refreshButton" />
+                <br />
+                <img id="loader" src="/images/ajax-loader.gif" />
+                <br />
+                
                 <ul id="books" class="books"></ul>
             </div>
         </div>
@@ -45,3 +50,22 @@
     <div class="footer clearfix">
     </div>
 </form>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/custom/BookController.js"></script>
+
+    <script id="bookTemplate" type="text/html">
+        <li>
+            <p>
+                <strong> Book ID:</strong> ${Id}
+                <br />
+                <strong> Book Name:</strong> ${Name}
+                <br />
+                <strong> Price: $</strong> ${ Price }
+            </p>
+            <p>
+                <a href="/api/Books/${ Id }" class="button small red removeBook">Remove</a>                
+            </p>
+        </li>
+    </script>
+}

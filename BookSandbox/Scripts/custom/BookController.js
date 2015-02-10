@@ -4,6 +4,7 @@ $(function () {
     getData();
 
     $("#addBook").submit(function () {
+        $("#loader").show();
         $.post(
             "/api/books",
             $("#addBook").serialize(),
@@ -11,24 +12,38 @@ $(function () {
                 $("#bookTemplate").tmpl(value).appendTo("#books");
                 $("#name").val("");
                 $("#price").val("");
+                $("#loader").hide();
             },
             "json"
         );
         return false;
     });
-    $(".removeBook").live("click", function () {
+    $(document).on("click", ".removeBook", function () {        
+        var url = $(this).attr("href");
+        var self = this;        
         $.ajax({
             type: "DELETE",
-            url: $(this).attr("href"),
-            context: this,
-            success: function () {
-                $(this).closest("li").remove();
+            url: url,
+            //context: this,
+            success: function () {                
+                $(self).closest("li").remove();
             }
         });
         return false;
+    });   
+    
+    //$("input[type=\"submit\"], .removeBook, .viewImage").button();
+
+    $("#refreshButton").on("click", function () {
+        refreshData();
     });
-    $("input[type=\"submit\"], .removeBook, .viewImage").button();
 })
+
+function refreshData() {    
+    $("#books > li").remove();
+    $("#loader").show();
+    getData();
+}
 
 function getData()
 {
@@ -42,6 +57,7 @@ function getData()
                 );
                 $("#loader").hide();
                 $("#addBook").show();
+                //BindClick();
             }
         );
 }
