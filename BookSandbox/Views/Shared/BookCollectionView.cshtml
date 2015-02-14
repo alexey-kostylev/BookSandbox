@@ -1,0 +1,9 @@
+﻿@model IEnumerable<BookSandbox.Models.Book>
+
+<ul id="books" class="books">
+    @foreach (var item in Model)
+    {        
+        @Html.Partial("BookView", item);
+    } 
+</ul>
+

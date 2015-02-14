@@ -1,9 +1,36 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 @Html.Partial("AddBookPartial", new BookSandbox.Models.Book())
+<br />
+@Html.Partial("SearchByIdPartialView")
+<br />
+<div class="grid_8 omega">
+    <input type="button" value="Refresh" id="refreshButton" />
+    <br />
+    <img id="loader" src="/images/ajax-loader.gif" />
+    <br />
 
+    <div id="books">
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+    $(document).ready(function () {
+        loadData();
+        $("#refreshButton").on("click", function () {            
+            loadData();
+        });
+    });
+
+    function loadData() {        
+        $("#books").html('');
+        $("#loader").show();
+        $("#books").load("/BooksMVC/GetBooks", function () {
+                    $("#loader").hide();
+                });
+        }
+    </script>
+}

@@ -1,1 +1,5 @@
-﻿@using (Html.BeginAjaxF
+﻿@using (Html.BeginForm("SearchById","BooksMVC", FormMethod.Get))
+{
+    <input type="text" placeholder="book id" />
+    <input type="submit" value="Search by ID" />
+}

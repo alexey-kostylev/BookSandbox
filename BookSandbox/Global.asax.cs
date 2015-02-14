@@ -23,6 +23,7 @@ namespace BookSandbox
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             UnityConfig.RegisterComponents();
+            Bootstrapper.Initialise();
         }        
     }
 }

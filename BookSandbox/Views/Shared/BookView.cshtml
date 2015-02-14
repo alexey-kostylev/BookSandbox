@@ -1,0 +1,19 @@
+﻿@model BookSandbox.Models.Book
+
+@*<li>
+    <strong>Id:</strong>@Model.Id<br />
+    <strong>Name:</strong>@Model.Name
+</li>*@
+
+<li>
+    <p>
+        <strong> Book ID:</strong> @Model.Id
+        <br />
+        <strong> Book Name:</strong> @Model.Name
+        <br />
+        <strong> Price: $</strong> @Model.Price
+    </p>
+    <p>
+        <a href="/api/Books/@Model.Id" class="button small red removeBook">Remove</a>
+    </p>
+</li>

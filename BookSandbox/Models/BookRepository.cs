@@ -11,10 +11,33 @@ namespace BookSandbox.Models
     {
         private BookStore db = new BookStore();
 
-        public BookRepository()
+        private class Nested
+        {
+            internal static readonly BookRepository instance = new BookRepository();
+
+            public Nested()
+            {
+            }
+        }
+
+        public static BookRepository Instance
+        {
+            get
+            {                
+                return Nested.instance;
+            }
+        }
+
+        private BookRepository()
+        {
+            Debug.WriteLine("repository created");
+            InitRepository();
+            Debug.WriteLine("repository initialized");
+        }
+
+        internal void InitRepository()
         {
             BookStoreInitializer.InitStore(db);
-            Debug.WriteLine("repository created");
         }
 
         public IEnumerable<Book> GetAll()
