@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Books</h2>
+
+<div ng-app="booksapp" data-ng-controller="booksController">
+    title: <h3>{{title}}</h3>
+    <label>items: {{books.lentgh}}</label>
+    <table class="table table-striped table-bordered table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="book in books">
+                <td>{{book.id}}</td>
+                <td>{{book.name}}</td>
+                <td>{{book.price}}</td>                
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">Total</td>
+                <td>1112</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

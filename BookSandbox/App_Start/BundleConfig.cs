@@ -23,6 +23,15 @@ namespace BookSandbox
             bundles.Add(new ScriptBundle("~/bundles/jquery.template").Include(
                      "~/Scripts/jquery.tmpl.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/Scripts/angular.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/custom_angular").Include(
+                "~/Scripts/custom/booksController.js",
+                "~/Scripts/custom/booksService.js",
+                "~/Scripts/custom/booksModule.js"));                
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
