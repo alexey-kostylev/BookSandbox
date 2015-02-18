@@ -54,6 +54,7 @@ namespace BookSandbox.Controllers
             return response;
         }
 
+        [HttpPut]
         public void UpdateBook(int id, Book book)
         {
             if (!this.repo.Update(book))
@@ -62,6 +63,8 @@ namespace BookSandbox.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route]
         public HttpResponseMessage DeleteBook(int id)
         {
             this.repo.Remove(id);

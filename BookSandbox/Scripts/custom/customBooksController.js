@@ -47,19 +47,35 @@ function refreshData() {
 
 function getData()
 {
-    $.getJSON(
-            "/api/books",
-            function (data) {
-                $.each(data,
-                    function (index, value) {
-                        $("#bookTemplate").tmpl(value).appendTo("#books");
-                    }
-                );
-                $("#loader").hide();
-                $("#addBook").show();
-                //BindClick();
-            }
-        );
+    var promise = $.getJSON("/api/books")
+    .done(function (data) {
+        $.each(data,
+            function (index, value) {
+                $("#bookTemplate").tmpl(value).appendTo("#books");
+            })
+    })
+    .fail(function () {
+        alert('error loading data');
+    })
+    .always(function () {
+        $("#loader").hide();
+        $("#addBook").show();
+    });
+
+
+    //$.getJSON(
+    //        "/api/books",
+    //        function (data) {
+    //            $.each(data,
+    //                function (index, value) {
+    //                    $("#bookTemplate").tmpl(value).appendTo("#books");
+    //                }
+    //            );
+    //            $("#loader").hide();
+    //            $("#addBook").show();
+    //            //BindClick();
+    //        }
+    //    );
 }
 
 function find() {

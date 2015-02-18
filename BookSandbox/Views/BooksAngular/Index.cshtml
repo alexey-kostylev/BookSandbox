@@ -3,10 +3,21 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Books</h2>
+<div ng-app="booksapp" data-ng-controller="booksController">   
+    <fieldset name="add book">
+    <legend>Edit/Add book</legend>
+        <input type="hidden" data-ng-model="new_book.Id" />
+        <label>Name</label>
+        <br />
+        <input type="text" data-ng-model="new_book.Name" />
+        <br />
+        <label>Price</label><br />
+        <input type="number" data-ng-model="new_book.Price"/>
+        <br />
+        <input type="button" value="submit" data-ng-click="save()"/>
+    </fieldset><br />
 
-<div ng-app="booksapp" data-ng-controller="booksController">
-    title: <h3>{{title}}</h3>
+    <hr />
     <label>items: {{books.lentgh}}</label>
     <table class="table table-striped table-bordered table-condensed table-hover">
         <thead>
@@ -14,19 +25,24 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="book in books">
-                <td>{{book.id}}</td>
-                <td>{{book.name}}</td>
-                <td>{{book.price}}</td>                
+                <td>{{book.Id}}</td>
+                <td>{{book.Name}}</td>
+                <td>{{book.Price}}</td>
+                <td>
+                    <a data-ng-click="update(book.Id)">Edit</a> |
+                    <a data-ng-click="delete(book.Id)">Delete</a>
+                </td>           
             </tr>
         </tbody>
         <tfoot>
             <tr>
                 <td colspan="2">Total</td>
-                <td>1112</td>
+                <td>{{getTotal()}}</td>
             </tr>
         </tfoot>
     </table>
