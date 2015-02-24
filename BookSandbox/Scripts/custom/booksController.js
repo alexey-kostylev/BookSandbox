@@ -1,12 +1,14 @@
 ﻿
 function booksController($scope, booksService) {
     $scope.title = '** book list';
-    $scope.new_book = {};    
+    $scope.new_book = {};
+    $scope.total = 0;
 
     $scope.getAll = function () {
         var promise = booksService.getBooks();
         promise.success(function (data) {
             $scope.books = data;
+            $scope.total = _getTotal(data);
         });
         promise.error(function (data) {
             alert('ajax failed!');
@@ -15,13 +17,17 @@ function booksController($scope, booksService) {
 
     $scope.getAll();
 
+    var _getTotal = function (books) {
+        var total = 0;
+        $scope.books.forEach(function (clb) {
+            total += clb.Price;
+        });
+        return total;
+    }
+
     $scope.getTotal = function()
     {
-        var total = 0;
-        //$scope.books.forEach(function (clb) {
-        //    total += clb.price;
-        //});
-        return total;
+        return $scope.total;
     }
 
     $scope.save = function () {        
@@ -35,7 +41,7 @@ function booksController($scope, booksService) {
                 $scope.getAll();
             },
             function (reason) {
-                alert('post failed - ' + reason);
+                alert('post failed - ' + reason.status + "-" + reason.statusText);
             })
         }
         else {
@@ -43,7 +49,7 @@ function booksController($scope, booksService) {
             .then(function (response) {
                 $scope.getAll();
             }, function (reason) {
-                alert('update failed.reason: '+reason);
+                alert('update failed.reason: ' + reason.status + "-" + reason.statusText);
             });
         }
         
@@ -56,7 +62,7 @@ function booksController($scope, booksService) {
             $scope.getAll();
         },
         function (reason) {
-            alert('delete failed: '+reason.data.Message);}
+            alert('delete failed: '+reason.status+"-"+reason.statusText);}
         );
     }
 

@@ -68,8 +68,8 @@ namespace BookSandbox
 
             config.Routes.MapHttpRoute(
                 name: "MyEcho",
-                routeTemplate: "api/{controller}/{echo}",
-                defaults: new { echo = RouteParameter.Optional }
+                routeTemplate: "api/My/{echo}",
+                defaults: new { echo = RouteParameter.Optional, controller="My", action="GetEcho" }
             );
 
             config.Routes.MapHttpRoute(
